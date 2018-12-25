@@ -1,25 +1,14 @@
 <template>
     <Row>
         <Col span="24" class="publishBtn">
-            <Button :size="buttonSize" icon="ios-cloud-upload-outline" class="btn" @click="publicNews">发布</Button>
-            <Select v-model="model"
-                    style="width:150px;margin-left: 40px;margin-top: 10px"
-                    placeholder="请选择新闻分类"
-                    @on-change="change"
-                    :label-in-value="true"
-            >
-                <Option v-for="item in newsType" :value="item.id" :key="item.id">{{ item.name }}</Option>
-            </Select>
-        </Col>
-        <Col span="24">
-            <Input v-model="title" type="textarea" placeholder="请输入文章标题" class="title"/>
-        </Col>
-        <Col span="24">
-            <Input v-model="summaryContent" type="textarea" placeholder="请输入文章摘要" class="title"/>
+            <Button :size="buttonSize" icon="ios-cloud-upload-outline" class="btn" @click="publicNews">更新</Button>
         </Col>
         <br>
         <Col span="24">
-            <quill-editor v-model="content"
+            <Input v-model="name" type="textarea" placeholder="请输入联盟名称" class="title"/>
+        </Col>
+        <Col span="24">
+            <quill-editor v-model="introduction"
                           ref="myQuillEditor"
                           :options="editorOption"
                           @change="onEditorChange($event)"
@@ -38,21 +27,17 @@
 
     Quill.register('modules/ImageExtend', ImageExtend)
     export default {
-        name: "newsPublish",
+        name: "unionInfo",
         data() {
             return {
                 //按钮大小
                 buttonSize: 'large',
                 //新闻内容
-                content: '<h2>请输入你的内容......</h2>',
+                introduction: '<h2>请输入你的内容......</h2>',
+                //联盟标题
+                name: '',
                 //图片相对地址
                 pic: [],
-                //文章标题
-                title: '',
-                //发布人
-                publisher: '',
-                //新闻摘要
-                summaryContent: '',
                 //富文本编辑器相关配置
                 editorOption: {
                     // some quill options
@@ -81,14 +66,6 @@
                         }
                     }
                 },
-                newsType: [
-                    {
-                        id: '',
-                        name: '',
-                    },
-                ],
-                model: '',
-                id: ''
             }
         },
         methods: {
@@ -123,13 +100,10 @@
              */
             publicNews() {
                 console.log(this.model)
-                this.$ajax.post('http://websitdevelopment.cn:8081/news/saveNews', {
-                    publisher: '暂不处理',
-                    title: `${this.title}`,
-                    content: this.content,
-                    pic: this.pic.join(';'),
-                    summaryContent: this.summaryContent,
-                    catelogue: this.id
+                this.$ajax.post('http://websitdevelopment.cn:8081/alliance/saveMemberInfo', {
+                    name: this.name,
+                    introduction: this.introduction,
+                    pic: this.pic,
                 })
                     .then((data) => {
                         console.log(data);
@@ -147,19 +121,6 @@
         mounted() {
             //此处需要解决的一个问题就是对于这个富文本编辑器的图片上传作何处理
             //console.log('this is current quill instance object', this.editor)
-            this.$Notice.warning({
-                title: '管理员请注意',
-                desc: '上传第一张图片的大小必须符合640*360格式！！！',
-                duration: 10,
-            });
-            this.$ajax.post('http://websitdevelopment.cn:8080/newsCategory/getAllCategory')
-                .then((data) => {
-                    console.log(data);
-                    this.newsType = data.data;
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
         }
     }
 </script>
@@ -170,6 +131,7 @@
 
         .btn {
             margin-top: 10px;
+            margin-bottom: 10px;
         }
     }
 

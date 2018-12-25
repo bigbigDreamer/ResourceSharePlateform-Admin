@@ -27,6 +27,16 @@ export default new Router({
           path:'auditNews',
           name:'1-2',
           component:()=> import('./views/news/auditNews.vue')
+        },
+        {
+          path:'unionInfo',
+          name:'2-1',
+          component:()=> import('./views/MaintenWebsite/unionInfo.vue')
+        },
+        {
+          path:'laws',
+          name:'2-2',
+          component:()=> import('./views/MaintenWebsite/Laws.vue')
         }
 
       ]

@@ -3,7 +3,7 @@ module.exports = {
   baseUrl: './',
   //定义输出目录
   outputDir:'dist',
-  //定义静态资源目录
+  //定义静态资源目录0
   assetsDir:'public',
   //定义主入口
   indexPath:'index.html',

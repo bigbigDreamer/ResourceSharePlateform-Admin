@@ -17,11 +17,12 @@
                   </Submenu>
                   <Submenu name="2">
                       <template slot="title">
-                          <Icon type="ios-paper" />
-                          评论管理
+                          <Icon type="md-build" />
+                          网站维护
                       </template>
-                      <MenuItem name="2-1">评论内容</MenuItem>
-                      <MenuItem name="2-2">评论审核</MenuItem>
+                      <MenuItem name="2-1">联盟介绍维护</MenuItem>
+                      <MenuItem name="2-2">法律法规维护</MenuItem>
+                     <!--<MenuItem name="2-3">设备共享维护</MenuItem>-->
                   </Submenu>
               </Menu>
           </Sider>
@@ -125,4 +126,5 @@ export default {
         vertical-align: middle;
         font-size: 22px;
     }
+
 </style>

@@ -11,7 +11,7 @@
         name: "auditNews",
         data() {
             return {
-                recommend: '',
+                recommend: false,
                 columns: [
                     {
                         title: '标题',
@@ -56,7 +56,6 @@
                                 h('i-switch', {
                                     props: {
                                         size: 'large',
-
                                     },
                                     on: {
                                         'on-change': (status) => {
@@ -100,14 +99,14 @@
                                     on: {
                                         click: () => {
                                             console.log(params.row.id+'---'+this.recommend)
-                                            this.$ajax.post('/news/dealNews', {
+                                            this.$ajax.post('http://websitdevelopment.cn:8081/news/dealNews', {
                                                 id: params.row.id,
                                                 recommend: this.recommend,
                                                 status: 1
                                             })
                                                 .then((data) => {
                                                     console.log(data);
-                                                    this.$ajax.post('/news/getUncheckedNews')
+                                                    this.$ajax.post('http://websitdevelopment.cn:8081/news/getUncheckedNews')
                                                         .then((data) => {
                                                             console.log(data);
                                                             this.data = data.data;
@@ -130,14 +129,14 @@
                                     },
                                     on: {
                                         click: () => {
-                                            this.$ajax.post('/news/dealNews', {
+                                            this.$ajax.post('http://websitdevelopment.cn:8081/news/dealNews', {
                                                 id: params.row.id,
                                                 recommend: this.recommend,
                                                 status: -1
                                             })
                                                 .then((data) => {
                                                     console.log(data);
-                                                    this.$ajax.post('/news/getUncheckedNews')
+                                                    this.$ajax.post('http://websitdevelopment.cn:8081/news/getUncheckedNews')
                                                         .then((data) => {
                                                             console.log(data);
                                                             this.data = data.data;
@@ -196,7 +195,7 @@
             }
         },
         mounted() {
-            this.$ajax.post('/news/getUncheckedNews')
+            this.$ajax.post('http://websitdevelopment.cn:8081/news/getUncheckedNews')
                 .then((data) => {
                     console.log(data);
                     this.data = data.data;
@@ -210,5 +209,7 @@
 </script>
 
 <style scoped lang="less">
-    @import "auditNews";
+    .table{
+        height: 500px;
+    }
 </style>
