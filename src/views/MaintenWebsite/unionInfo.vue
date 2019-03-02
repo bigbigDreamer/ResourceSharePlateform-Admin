@@ -45,11 +45,11 @@
                         ImageExtend: {
                             loading: true,
                             name: 'myFile',
-                            action: 'http://websitdevelopment.cn:8081/file/uploadPic',
+                            action: 'http://websitdevelopment:8080/fileupload/file/uploadPic',
                             response: (res) => {
                                 console.log(res);
-                                this.pic.push('http://websitdevelopment.cn:8081/' + res.message);
-                                return `http://websitdevelopment.cn:8081/${res.message}`;
+                                this.pic.push('http://websitdevelopment:8080/fileupload/file/uploadPic/' + res.message);
+                                return `http://websitdevelopment:8080/fileupload/file/uploadPic/${res.message}`;
                             },
                             change: (xhr, formData) => {
                                 // xhr.setRequestHeader('myHeader','myValue')

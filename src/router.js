@@ -37,6 +37,11 @@ export default new Router({
           path:'laws',
           name:'2-2',
           component:()=> import('./views/MaintenWebsite/Laws.vue')
+        },
+        {
+          path:'CategoryManage',
+          name:'3-1',
+          component:()=> import('./views/EquipManage/CategoryManage.vue')
         }
 
       ]

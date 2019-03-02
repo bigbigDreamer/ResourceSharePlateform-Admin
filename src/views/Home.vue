@@ -24,6 +24,14 @@
                       <MenuItem name="2-2">法律法规维护</MenuItem>
                      <!--<MenuItem name="2-3">设备共享维护</MenuItem>-->
                   </Submenu>
+                  <Submenu name="3">
+                      <template slot="title">
+                          <Icon type="md-build" />
+                          设备管理
+                      </template>
+                      <MenuItem name="3-1">类别管理</MenuItem>
+                      <MenuItem name="3-2">设备管理</MenuItem>
+                  </Submenu>
               </Menu>
           </Sider>
         <Content :style="{margin: '20px', background: '#fff', minHeight: '260px'}">
