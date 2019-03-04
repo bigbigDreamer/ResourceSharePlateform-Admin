@@ -31,6 +31,7 @@
                       </template>
                       <MenuItem name="3-1">类别管理</MenuItem>
                       <MenuItem name="3-2">设备管理</MenuItem>
+                      <MenuItem name="3-3">项目管理</MenuItem>
                   </Submenu>
               </Menu>
           </Sider>

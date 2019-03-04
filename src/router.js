@@ -42,6 +42,16 @@ export default new Router({
           path:'CategoryManage',
           name:'3-1',
           component:()=> import('./views/EquipManage/CategoryManage.vue')
+        },
+        {
+          path:'DeviceDetailsManagement',
+          name:'3-2',
+          component:()=> import('./views/EquipManage/DeviceDetailsManagement.vue')
+        },
+        {
+          path:'OpenProjectManagement',
+          name:'3-3',
+          component:()=> import('./views/EquipManage/OpenProjectManagement.vue')
         }
 
       ]
