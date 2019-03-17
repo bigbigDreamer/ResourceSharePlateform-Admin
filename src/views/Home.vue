@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <Layout>
+    <Layout v-if="isLog">
         <Header :style="{padding: 0}" class="layout-header-bar">
             <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '0 20px'}" type="md-menu" size="24"></Icon>
         </Header>
@@ -40,17 +40,24 @@
         </Content>
       </Layout>
     </Layout>
+      <Log v-else/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import logState from '../utils'
+import Log from '../components/Log'
 export default {
   name: 'home',
     data () {
         return {
-            isCollapsed: false
+            isCollapsed: false,
+            isLog:false,
         }
+    },
+    components:{
+        Log
     },
     computed: {
         rotateIcon () {
@@ -81,6 +88,11 @@ export default {
             console.log(name)
             this.$router.push({name});
         }
+    },
+    mounted(){
+         if(logState.getData()) {
+             this.isLog = true;
+         }
     }
 }
 </script>
