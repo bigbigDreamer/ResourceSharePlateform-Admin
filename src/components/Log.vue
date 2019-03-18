@@ -21,6 +21,7 @@
 
 <script>
     import stateSet from '../utils'
+
     export default {
         name: "Log",
         data() {
@@ -34,8 +35,7 @@
         methods: {
             //用户点击登录
             login() {
-                stateSet.savaData(true);
-                window.history.go(0);
+
                 if (this.formItem.username === 'admin' && this.formItem.password === '000000') {
                     window.location.href = 'http://websitdevelopment.cn:84'
                 } else {
@@ -44,12 +44,19 @@
                         password: this.formItem.password,
                     })
                         .then(data => {
-                            console.log(data);
+                            console.log(data)
+                            return data.status === 200 && !!data.data ?
+                                (function IIFE() {
+                                    stateSet.savaData(true);
+                                    window.history.go(0);
+                                })() :
+                                this.$Message.error('用户名或密码错误！');
+
                         })
                         .catch(err => err);
                 }
             },
-            mounted(){
+            mounted() {
 
             }
         }

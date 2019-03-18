@@ -6,7 +6,7 @@
         </Header>
       <Layout>
           <Sider ref="side1" hide-trigger collapsible :collapsed-width="78" v-model="isCollapsed">
-              <Menu active-name="1-1" theme="dark" width="auto" :class="menuitemClasses" @on-select="handleSelect">
+              <Menu active-name="1-1" theme="dark" width="auto" :class="menuitemClasses" @on-select="handleSelect" :open-names="['1']">
                   <Submenu name="1">
                       <template slot="title">
                           <Icon type="ios-paper" />
@@ -26,12 +26,16 @@
                   </Submenu>
                   <Submenu name="3">
                       <template slot="title">
-                          <Icon type="md-build" />
+                          <Icon type="md-build"></Icon>
                           设备管理
                       </template>
                       <MenuItem name="3-1">类别管理</MenuItem>
-                      <MenuItem name="3-2">设备管理</MenuItem>
-                      <MenuItem name="3-3">项目管理</MenuItem>
+                      <MenuItem name="3-2">设备添加</MenuItem>
+                      <MenuItem name="3-3">设备删除</MenuItem>
+                      <MenuItem name="3-4">设备修改</MenuItem>
+                      <MenuItem name="3-5">项目添加</MenuItem>
+                      <MenuItem name="3-6">项目删除</MenuItem>
+                      <MenuItem name="3-7">项目修改</MenuItem>
                   </Submenu>
               </Menu>
           </Sider>
