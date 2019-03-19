@@ -1,8 +1,14 @@
 export default {
-    savaData(todo = false){
-        return window.sessionStorage.setItem('state',todo);
+    saveData(todo = false) {
+        return window.sessionStorage.setItem('state', todo);
     },
-    getData(){
-       return  window.sessionStorage.getItem('state');
+    getData() {
+        return window.sessionStorage.getItem('state');
+    },
+    saveUser(info) {
+        return window.sessionStorage.setItem('user', info);
+    },
+    getUser() {
+        return window.sessionStorage.getItem('user');
     }
 };

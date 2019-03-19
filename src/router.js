@@ -49,9 +49,9 @@ export default new Router({
           component:()=> import('./views/EquipManage/DeviceDetailsManagement.vue')
         },
         {
-          path:'OpenProjectManagement',
+          path:'DelEquipment',
           name:'3-3',
-          component:()=> import('./views/EquipManage/OpenProjectManagement.vue')
+          component:()=> import('./views/EquipManage/DelEquipment.vue')
         }
 
       ]
