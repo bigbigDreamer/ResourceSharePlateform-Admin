@@ -13,8 +13,8 @@
             return {
                 columns: [
                     {
-                        title: 'Name',
-                        key: 'name',
+                        title: 'ID',
+                        key: 'id',
                         render: (h, params) => {
                             return h('div', [
                                 h('Icon', {
@@ -22,17 +22,21 @@
                                         type: 'person'
                                     }
                                 }),
-                                h('strong', params.row.name)
+                                h('strong', params.row.id)
                             ]);
                         }
                     },
                     {
-                        title: 'Age',
-                        key: 'age'
+                        title: '类别',
+                        key: 'catalogue'
                     },
                     {
-                        title: 'Address',
-                        key: 'address'
+                        title: '名称',
+                        key: 'name'
+                    },
+                    {
+                        title: '类型',
+                        key: 'type'
                     },
                     {
                         title: 'Action',
@@ -47,7 +51,7 @@
                                 },
                                 on: {
                                     click: () => {
-                                        this.remove(params.index)
+                                        this.remove(params.index, params.row.id)
                                     }
                                 }
                             }, 'Delete');
@@ -57,31 +61,44 @@
                 ],
                 data: [
                     {
-                        name: 'John Brown',
-                        age: 18,
-                        address: 'New York No. 1 Lake Park'
+                        catalogue: "光电子",
+                        id: 1,
+                        name: "光学相干扫描成像仪（OCT）",
+                        pic: null,
+                        type: "自研",
                     },
-                    {
-                        name: 'Jim Green',
-                        age: 24,
-                        address: 'London No. 1 Lake Park'
-                    },
-                    {
-                        name: 'Joe Black',
-                        age: 30,
-                        address: 'Sydney No. 1 Lake Park'
-                    },
-                    {
-                        name: 'Jon Snow',
-                        age: 26,
-                        address: 'Ottawa No. 2 Lake Park'
-                    }
                 ]
             }
         },
         methods: {
-            remove(index) {
-                this.data6.splice(index, 1);
+            remove(index, id) {
+                this.data.splice(index, 1);
+                console.log(id);
+                this.$ajax.post('http://websitdevelopment.cn:8081/device/deleteById', {
+                    id
+                })
+                    .then(data => {
+                        console.log(data);
+                        return data.data.result ?
+                            this.$ajax.post('http://websitdevelopment.cn:8081/device/getUnitDevice', {
+                                unit: storage.getUser()
+                            })
+                                .then(data => {
+                                    this.$Message.info({
+                                        content: '删除成功！',
+                                        duration: 5
+                                    });
+                                    //console.log(data);
+                                    this.data = data.data;
+                                })
+                                .catch(err => err) :
+                            this.$Message.info({
+                                content: '删除失败！',
+                                duration: 5
+                            });
+
+                    })
+                    .catch(err => err);
             }
         },
         mounted() {
@@ -91,7 +108,8 @@
                 unit: storage.getUser()
             })
                 .then(data => {
-                    console.log(data);
+                    //console.log(data);
+                    this.data = data.data;
                 })
                 .catch(err => err);
         }
@@ -99,7 +117,7 @@
 </script>
 
 <style scoped>
-.DelEquipment{
-    margin-top: 18px;  
-}
+    .DelEquipment {
+        margin-top: 18px;
+    }
 </style>

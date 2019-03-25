@@ -52,7 +52,32 @@ export default new Router({
           path:'DelEquipment',
           name:'3-3',
           component:()=> import('./views/EquipManage/DelEquipment.vue')
-        }
+        },
+        {
+          path:'UpdateEquipmentInfo',
+          name:'3-4',
+          component:()=> import('./views/EquipManage/UpdateEquipmentInfo.vue')
+        },
+        {
+          path:'OpenProjectAdd',
+          name:'3-5',
+          component:()=> import('./views/EquipManage/OpenProjectAdd.vue')
+        },
+        {
+          path:'OpenProjectDel',
+          name:'3-6',
+          component:()=> import('./views/EquipManage/OpenProjectDel.vue')
+        },
+        {
+          path:'OpenProjectManagement',
+          name:'3-7',
+          component:()=> import('./views/EquipManage/OpenProjectManagement.vue')
+        },
+        {
+          path:'AppointmentRecordDel',
+          name:'3-8',
+          component:()=> import('./views/EquipManage/AppointmentRecordDel.vue')
+        },
 
       ]
     },

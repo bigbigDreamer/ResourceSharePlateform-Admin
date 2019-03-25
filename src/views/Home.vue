@@ -36,6 +36,7 @@
                       <MenuItem name="3-5">项目添加</MenuItem>
                       <MenuItem name="3-6">项目删除</MenuItem>
                       <MenuItem name="3-7">项目修改</MenuItem>
+                      <MenuItem name="3-8">预约记录管理</MenuItem>
                   </Submenu>
               </Menu>
           </Sider>
