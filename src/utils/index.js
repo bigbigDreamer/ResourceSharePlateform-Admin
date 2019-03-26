@@ -10,5 +10,11 @@ export default {
     },
     getUser() {
         return window.sessionStorage.getItem('user');
+    },
+    setUserName(username){
+        return Window.sessionStorage.setItem('username',username);
+    },
+    getUserName(){
+        return Window.sessionStorage.getItem('username');
     }
 };

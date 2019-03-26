@@ -170,6 +170,16 @@
                 })
                     .then(data => {
                         console.log(data);
+                        return data.data.result ?
+                            this.$Message.info({
+                                content: '添加成功！',
+                                duration: 5
+                            }) :
+                            this.$Message.info({
+                                content: '添加失败！',
+                                duration: 5
+                            });
+
                     })
                     .catch(err => err);
             }

@@ -35,6 +35,7 @@
 <script>
     import {quillEditor, Quill} from 'vue-quill-editor'
     import {container, ImageExtend, QuillWatch} from 'quill-image-extend-module'
+    import storage from '../../utils'
 
     Quill.register('modules/ImageExtend', ImageExtend)
     export default {
@@ -60,11 +61,11 @@
                         ImageExtend: {
                             loading: true,
                             name: 'myFile',
-                            action: 'http://websitdevelopment:8081/images/uploadPic',
+                            action: 'http://websitdevelopment.cn:8081/file/uploadPic',
                             response: (res) => {
                                 console.log(res);
-                                this.pic.push('http://websitdevelopment:8081/images/uploadPic/' + res.message);
-                                return `http://websitdevelopment:8081/images/uploadPic/${res.message}`;
+                                this.pic.push('http://websitdevelopment.cn:8080/' + res.message);
+                                return `http://websitdevelopment.cn:8080/${res.message}`;
                             },
                             change: (xhr, formData) => {
                                 // xhr.setRequestHeader('myHeader','myValue')
@@ -124,7 +125,7 @@
             publicNews() {
                 console.log(this.model)
                 this.$ajax.post('http://websitdevelopment.cn:8081/news/saveNews', {
-                    publisher: '暂不处理',
+                    publisher: storage.getUserName(),
                     title: `${this.title}`,
                     content: this.content,
                     pic: this.pic.join(';'),

@@ -12,6 +12,7 @@
         data() {
             return {
                 recommend: false,
+                status:0,
                 columns: [
                     {
                         title: '标题',
@@ -60,7 +61,7 @@
                                     on: {
                                         'on-change': (status) => {
                                             this.recommend = status;
-                                            console.log(status)
+                                           // console.log(status)
                                         }
                                     }
                                 },)])
