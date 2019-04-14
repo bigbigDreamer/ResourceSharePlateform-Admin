@@ -125,7 +125,7 @@
             publicNews() {
                 console.log(this.model)
                 this.$ajax.post('http://websitdevelopment.cn:8081/news/saveNews', {
-                    publisher: storage.getUserName(),
+                    publisher: "Admin'",
                     title: `${this.title}`,
                     content: this.content,
                     pic: this.pic.join(';'),

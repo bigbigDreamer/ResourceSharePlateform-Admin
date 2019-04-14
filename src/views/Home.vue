@@ -3,6 +3,7 @@
     <Layout v-if="isLog">
         <Header :style="{padding: 0}" class="layout-header-bar">
             <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '0 20px'}" type="md-menu" size="24"></Icon>
+
         </Header>
       <Layout>
           <Sider ref="side1" hide-trigger collapsible :collapsed-width="78" v-model="isCollapsed">
@@ -21,12 +22,12 @@
                           网站维护
                       </template>
                       <MenuItem name="2-1">联盟介绍维护</MenuItem>
-                      <MenuItem name="2-2">法律法规维护</MenuItem>
+<!--                      <MenuItem name="2-2">法律法规维护</MenuItem>-->
                      <!--<MenuItem name="2-3">设备共享维护</MenuItem>-->
                   </Submenu>
                   <Submenu name="3">
                       <template slot="title">
-                          <Icon type="md-build"></Icon>
+                          <Icon type="ios-aperture" />
                           设备管理
                       </template>
                       <MenuItem name="3-1">类别管理</MenuItem>
@@ -37,6 +38,27 @@
                       <MenuItem name="3-6">项目删除</MenuItem>
                       <MenuItem name="3-7">项目修改</MenuItem>
                       <MenuItem name="3-8">预约记录管理</MenuItem>
+                  </Submenu>
+                  <MenuItem name="content">
+                      <Icon type="md-document" />
+                      数据报表</MenuItem>
+                  <Submenu name="4">
+                      <template slot="title">
+                          <Icon type="ios-chatbubbles" />
+                          创业指导
+                      </template>
+                      <MenuItem name="4-1">内容添加</MenuItem>
+                      <MenuItem name="4-2">内容修改</MenuItem>
+                      <MenuItem name="4-3">内容删除</MenuItem>
+                  </Submenu>
+                  <Submenu name="5">
+                      <template slot="title">
+                          <Icon type="ios-pricetags" />
+                          法律法规
+                      </template>
+                      <MenuItem name="5-1">法规添加</MenuItem>
+                      <MenuItem name="5-2">法规修改</MenuItem>
+                      <MenuItem name="5-3">法规删除</MenuItem>
                   </Submenu>
               </Menu>
           </Sider>

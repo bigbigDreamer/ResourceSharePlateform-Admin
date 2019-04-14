@@ -78,6 +78,36 @@ export default new Router({
           name:'3-8',
           component:()=> import('./views/EquipManage/AppointmentRecordDel.vue')
         },
+        {
+          path:'ContentAdd',
+          name:'4-1',
+          component:()=> import('./views/BusinessGuidance/ContentAdd.vue')
+        },
+        {
+          path:'ContentCheck',
+          name:'4-2',
+          component:()=> import('./views/BusinessGuidance/ContentUpdate.vue')
+        },
+        {
+          path:'ContentDel',
+          name:'4-3',
+          component:()=> import('./views/BusinessGuidance/ContentDel.vue')
+        },
+        {
+          path:'LawsAdd',
+          name:'5-1',
+          component:()=> import('./views/LawsAndRegulations/LawsAdd.vue')
+        },
+        {
+          path:'LawsUpdate',
+          name:'5-2',
+          component:()=> import('./views/LawsAndRegulations/LawsUpdate.vue')
+        },
+        {
+          path:'LawsDel',
+          name:'5-3',
+          component:()=> import('./views/LawsAndRegulations/LawsDel.vue')
+        },
 
       ]
     },

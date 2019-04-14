@@ -44,13 +44,16 @@
                         password: this.formItem.password,
                     })
                         .then(data => {
-                            console.log(data.data);
                             //判断请求是不是
+                            console.log(data.data.user.username);
+                            // stateSet.saveName(data.data.user);
                             return data.status === 200 && !!data.data ?
                                 (function IIFE() {
                                     stateSet.saveData(true);
+
                                     stateSet.saveUser(data.data.user.unit);
-                                    stateSet.setUserName(data.data.user.username);
+
+
                                     window.history.go(0);
                                 })() :
                                 this.$Message.error('用户名或密码错误！');

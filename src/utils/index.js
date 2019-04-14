@@ -11,10 +11,10 @@ export default {
     getUser() {
         return window.sessionStorage.getItem('user');
     },
-    setUserName(username){
-        return Window.sessionStorage.setItem('username',username);
+    saveName(todo){
+        return Window.sessionStorage.setItem('name',todo);
     },
     getUserName(){
-        return Window.sessionStorage.getItem('username');
+        return Window.sessionStorage.getItem('name');
     }
 };
