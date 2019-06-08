@@ -12,11 +12,18 @@ import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 import vueQuillEditor from 'vue-quill-editor'
 import './registerServiceWorker'
-
+import bus from './lib'
+import PubSub from 'pubsub.js'
 import axios from 'axios'
 Vue.use(vueQuillEditor);
 Vue.prototype.$ajax = axios;
-
+Vue.prototype.$BUS = bus;
+Vue.prototype.$SUB = PubSub;
+// Vue.prototype = {
+//   $ajax:axios,
+//   $BUS:bus,
+//   $SUB:PubSub,
+// };
 Vue.use(iView);
 Vue.use(VCharts);
 Vue.use(iEditor);

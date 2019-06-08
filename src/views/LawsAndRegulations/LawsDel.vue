@@ -68,7 +68,7 @@
                                 domProps: {},
                                 on: {
                                     click: () => {
-                                        this.$ajax.post('http://websitdevelopment.cn:8081/bunsinessGuidence/deleteGuidenceById', {
+                                        this.$ajax.post('http://websitdevelopment.cn:8081/policy/deletePolicyById', {
                                             id: params.row.id
                                         })
                                             .then(data => {
@@ -107,7 +107,7 @@
             clickHandler(params) {
                 console.log(params);
                 this.modal = true;
-                this.$ajax.post('http://websitdevelopment.cn:8081/bunsinessGuidence/getGuidenceById', {
+                this.$ajax.post('http://websitdevelopment.cn:8081/policy/getPolicyById', {
                     id: params.row.id
                 })
                     .then(data => {

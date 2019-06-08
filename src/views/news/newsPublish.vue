@@ -36,6 +36,7 @@
     import {quillEditor, Quill} from 'vue-quill-editor'
     import {container, ImageExtend, QuillWatch} from 'quill-image-extend-module'
     import storage from '../../utils'
+    import {mapState}  from 'vuex'
 
     Quill.register('modules/ImageExtend', ImageExtend)
     export default {
@@ -95,8 +96,8 @@
         methods: {
             change(name) {
                 //console.log(name.value)
-                console.log(this.model)
-                this.id = name.value;
+                //console.log(this.model)name
+                this.id = name.label;
             },
             //富文本编辑器失去焦点
             onEditorBlur(quill) {
@@ -125,7 +126,7 @@
             publicNews() {
                 console.log(this.model)
                 this.$ajax.post('http://websitdevelopment.cn:8081/news/saveNews', {
-                    publisher: "Admin'",
+                    publisher: this.username,
                     title: `${this.title}`,
                     content: this.content,
                     pic: this.pic.join(';'),
@@ -133,7 +134,14 @@
                     catelogue: this.id
                 })
                     .then((data) => {
-                        console.log(data);
+                        if (data.data){
+                            this.content = '';
+                            this.title = '';
+                            this.summaryContent = '';
+                        }
+                        return data.data.result?
+                            this.$Message.success('发布成功！'):
+                            this.$Message.error('发布失败！');
                     })
                     .catch((err) => {
                         console.log(err);
@@ -143,7 +151,8 @@
         computed: {
             editor() {
                 return this.$refs.myQuillEditor.quill
-            }
+            },
+            ...mapState(['username'])
         },
         mounted() {
             //此处需要解决的一个问题就是对于这个富文本编辑器的图片上传作何处理
@@ -161,6 +170,15 @@
                 .catch((err) => {
                     console.log(err);
                 });
+        },
+        created() {
+            this.$BUS.$on('saveUser',(data)=>{
+                console.log('发布人'+data);
+                this.publisher = data;
+            })
+            this.$SUB.subscribe('username',(data)=>{
+                console.log('我是pubsubjs'+data)
+            })
         }
     }
 </script>

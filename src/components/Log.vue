@@ -21,7 +21,8 @@
 
 <script>
     import stateSet from '../utils'
-
+    import  {mapActions}  from 'vuex'
+    import filter from '../tools'
     export default {
         name: "Log",
         data() {
@@ -33,9 +34,9 @@
             }
         },
         methods: {
+            ...mapActions(['saveUserName']),
             //用户点击登录
             login() {
-
                 if (this.formItem.username === 'admin' && this.formItem.password === '000000') {
                     window.location.href = 'http://websitdevelopment.cn:84'
                 } else {
@@ -45,16 +46,31 @@
                     })
                         .then(data => {
                             //判断请求是不是
-                            console.log(data.data.user.username);
-                            // stateSet.saveName(data.data.user);
+
+                            // this.$BUS.$emit('saveUser',data.data.user.username);
+                            // this.$SUB.publish('username',data.data.user.username);
+
                             return data.status === 200 && !!data.data ?
-                                (function IIFE() {
-                                    stateSet.saveData(true);
+                                (() =>{
+                                    console.log(data.data.user.username);
+                                    console.log(this)
+                                    this.saveUserName(data.data.user.username);
+                                    // stateSet.saveData(true);
+                                    // stateSet.saveUser(data.data.user.unit);
+                                    this.$ajax.post('http://websitdevelopment.cn:3001/findRoutesByUser',{
+                                        username:data.data.user.username
+                                    })
+                                        .then(data=> {
+                                            // console.log(filter.filterRouter(data.data[0].belongRoutes))
+                                            // console.log(data)
+                                            stateSet.saveRoutes(filter.filterRouter(data.data[0].belongRoutes));
+                                            this.$router.addRoutes([filter.filterRouter(data.data[0].belongRoutes)]);
+                                            this.$router.push({name:'homes'});
+                                        })
+                                        .catch(err => console.log(err))
 
-                                    stateSet.saveUser(data.data.user.unit);
 
 
-                                    window.history.go(0);
                                 })() :
                                 this.$Message.error('用户名或密码错误！');
 

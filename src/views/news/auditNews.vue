@@ -133,7 +133,7 @@
                                             this.$ajax.post('http://websitdevelopment.cn:8081/news/dealNews', {
                                                 id: params.row.id,
                                                 recommend: this.recommend,
-                                                status: -1
+                                                status: 2
                                             })
                                                 .then((data) => {
                                                     console.log(data);

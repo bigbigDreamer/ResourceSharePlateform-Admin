@@ -12,9 +12,15 @@ export default {
         return window.sessionStorage.getItem('user');
     },
     saveName(todo){
-        return Window.sessionStorage.setItem('name',todo);
+        return window.sessionStorage.setItem('names',todo);
     },
     getUserName(){
-        return Window.sessionStorage.getItem('name');
+        return window.sessionStorage.getItem('names');
+    },
+    saveRoutes(routes){
+        return window.sessionStorage.setItem('routes',routes);
+    },
+    getRoutes(routes) {
+        return window.sessionStorage.getItem('routes');
     }
 };
